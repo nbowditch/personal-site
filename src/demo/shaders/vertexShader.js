@@ -3,12 +3,11 @@ const VERTEX_SHADER_TEXT =
 precision mediump float;
 
 attribute vec2 vertPosition;
-attribute vec3 vertColor;
 
-varying vec3 fragColor;
+varying vec2 fractalPos;
 
 void main() {
-    fragColor = vertColor;
+    fractalPos = vec2(2.0 * vertPosition.x, 2.0 * vertPosition.y);
     gl_Position = vec4(vertPosition, 0.0, 1.0);
 }
 

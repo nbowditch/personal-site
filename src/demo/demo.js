@@ -49,10 +49,11 @@ const Demo = {
         //
 
         var triangleVertices =
-        [  // X, Y              R, G, B
-            0.0, 0.5,           1.0, 0.0, 0.0,
-            -0.5, -0.5,         0.0, 1.0, 0.0,
-            0.5, -0.5,          0.0, 0.0, 1.0
+        [  // X, Y
+            -1.0, -1.0,
+            -1.0, 1.0,
+            1.0, -1.0,
+            1.0, 1.0
         ];
 
         var triangleVertexBufferObject = this.gl.createBuffer();
@@ -67,31 +68,28 @@ const Demo = {
             2,                                      // number of elements per attribute
             this.gl.FLOAT,                          // type of elements
             this.gl.FALSE,                          // are attributes normalized
-            5 * Float32Array.BYTES_PER_ELEMENT,     // size of individual vertex
+            2 * Float32Array.BYTES_PER_ELEMENT,     // size of individual vertex
             0                                       // offset from the beginning of a single vertex to this attribute
-        );
-        this.gl.vertexAttribPointer(
-            colorAttribLocation,                    // attribute location
-            3,                                      // number of elements per attribute
-            this.gl.FLOAT,                          // type of elements
-            this.gl.FALSE,                          // are attributes normalized
-            5 * Float32Array.BYTES_PER_ELEMENT,     // size of individual vertex
-            2 * Float32Array.BYTES_PER_ELEMENT      // offset from the beginning of a single vertex to this attribute
         );
 
         this.gl.enableVertexAttribArray(positionAttribLocation);
-        this.gl.enableVertexAttribArray(colorAttribLocation);    
+
+        this.mousePosUniform = this.gl.getUniformLocation(program, 'mousePosition');
+        this.mousePos = new Float32Array(2);
 
         this.program = program;  
     },
-    draw: () => {
+    draw: (x, y) => {
+        this.mousePos[0] = x;
+        this.mousePos[1] = y;
         this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
         this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
         this.gl.useProgram(this.program);
+        this.gl.uniform2fv(this.mousePosUniform, this.mousePos);
         this.gl.drawArrays(
-            this.gl.TRIANGLES,
+            this.gl.TRIANGLE_STRIP,
             0,  // vertices to skip
-            3   // vertices to draw
+            4   // vertices to draw
         );
     },
     resizeCanvas: (w, h) => {

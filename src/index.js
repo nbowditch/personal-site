@@ -82,10 +82,17 @@ window.addEventListener('resize', onResize);
 window.addEventListener('scroll', adjustNavPosition);
 
 canvas.addEventListener('mousemove', throttle((evt) => {
-	var x = 2 * evt.clientX / canvas.width - 1;
-	var y = 2 * evt.clientY / canvas.height - 1;
+	var x = 2 * Math.PI * (evt.clientX / canvas.width);
+	var y = evt.clientY / canvas.height - 0.7;
+
+	var th = x;
+	var r = y + 0.833333333333333 - 0.5 * Math.cos(th);
+
+	x = r * Math.cos(th);
+	y = r * Math.sin(th);
+
 	Demo.draw(x, y);
-}, 100));
+}, 10));
 
 /*************************************************************/
 /**                   Start things up                       **/
