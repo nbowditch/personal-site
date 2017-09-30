@@ -74,18 +74,37 @@ const Demo = {
 
         this.gl.enableVertexAttribArray(positionAttribLocation);
 
-        this.mousePosUniform = this.gl.getUniformLocation(program, 'mousePosition');
+        this.mousePosUniform = this.gl.getUniformLocation(program, 'mousePos');
         this.mousePos = new Float32Array(2);
+
+        this.canvasSizeUniform = this.gl.getUniformLocation(program, 'canvasSize');
+        this.canvasSize = new Float32Array(2);
 
         this.program = program;  
     },
-    draw: (x, y) => {
-        this.mousePos[0] = x;
-        this.mousePos[1] = y;
+    draw: (mousePos, canvas) => {
+        // First transform mouse position into weird space of "good" fractals
+        var x = 6.283185307 * (mousePos.x / canvas.width);
+        var y = mousePos.y / canvas.height - 0.7;
+
+        var th = x;
+        var r = y + 0.833333333333333 - 0.5 * Math.cos(th);
+
+        x = r * Math.cos(th);
+        y = r * Math.sin(th);
+
+        var transformedMousePos = {x, y};
+
+        this.mousePos[0] = transformedMousePos.x;
+        this.mousePos[1] = transformedMousePos.y;
+        this.canvasSize[0] = canvas.width;
+        this.canvasSize[1] = canvas.height;
+
         this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
         this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
         this.gl.useProgram(this.program);
         this.gl.uniform2fv(this.mousePosUniform, this.mousePos);
+        this.gl.uniform2fv(this.canvasSizeUniform, this.canvasSize);
         this.gl.drawArrays(
             this.gl.TRIANGLE_STRIP,
             0,  // vertices to skip

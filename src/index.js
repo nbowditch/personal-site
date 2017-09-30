@@ -8,7 +8,7 @@ import Demo from './demo/demo';
 
 var windowHeight = window.innerHeight;
 
-var body = document.querySelector('body');
+var html = document.querySelector('html');
 var navContainer = document.querySelector('.navContainer');
 var canvas = document.querySelector('#webgl-canvas');
 var landing = document.querySelector('#landing');
@@ -42,7 +42,7 @@ var throttle = function(fn, threshold = 250) {
  * it stays anchored to the top of the page
  */
 var adjustNavPosition = function() {
-	if (body.scrollTop >= window.innerHeight) {
+	if (html.scrollTop >= window.innerHeight) {
 		navContainer.classList.add('lockedOnTop');
 		landing.style.marginBottom = "35px";
 	} else {
@@ -82,16 +82,7 @@ window.addEventListener('resize', onResize);
 window.addEventListener('scroll', adjustNavPosition);
 
 canvas.addEventListener('mousemove', throttle((evt) => {
-	var x = 2 * Math.PI * (evt.clientX / canvas.width);
-	var y = evt.clientY / canvas.height - 0.7;
-
-	var th = x;
-	var r = y + 0.833333333333333 - 0.5 * Math.cos(th);
-
-	x = r * Math.cos(th);
-	y = r * Math.sin(th);
-
-	Demo.draw(x, y);
+	Demo.draw({x: evt.clientX, y: evt.clientY}, canvas);
 }, 10));
 
 /*************************************************************/
