@@ -108,7 +108,7 @@ var validateEmailForm = function() {
  */
 var submitEmailForm = function() {
 	var http = new XMLHttpRequest();
-    http.open('POST', 'http://localhost:3000/send', true);
+    http.open('POST', 'https://nbowditch-personal-site.herokuapp.com/send', true);
     http.setRequestHeader('Content-type','application/json');
     var params = JSON.stringify({
     	name: nameInput.value,
