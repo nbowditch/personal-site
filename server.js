@@ -38,11 +38,18 @@ app.post('/send', function (req, res, next) {
   var senderEmail = sanitizer.sanitize(req.body.email);
   var senderMessage = sanitizer.sanitize(req.body.message);
 
+  console.log('Received request to send email');
+  console.log(`   name:    ${senderName}`);
+  console.log(`   email:   ${senderEmail}`);
+  console.log(`   message: ${senderMessage}`);
+
   if (senderName === '' || senderEmail === '' || senderMessage === '') {
+    console.log('Some content was empty, redirecting!')
     res.redirect('/#contactMe');
     return;
   }
 
+  console.log('Email away!');
   app.mailer.send('email', {
     to: 'nhbowditch@gmail.com',
     subject: 'Email from personal site',
