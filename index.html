@@ -35,9 +35,9 @@
 				<p>Throughout my years studying computer science and working as a developer I've worked on some interesting projects. Here are a few of my favorites:</p>
 				<div class="showcase">
 					<div class="showcase-item">
-						<img src="./assets/test.png" alt="Ageon ISR" width="250" height="250">
+						<img src="./assets/cesium.png" alt="Cesium" width="250" height="250">
 						<h2>AGEON ISR</h2>
-						<p>At Novetta, I work on the new front-end of Ageon ISR. It is a real-time web application that interfaces with various sensors, devices, and communications in a geospatial context with live video streaming and various exploitation tools. The 3D globe is powered by Cesium, a third party map/globe visualization library. The front-end uses a properietary flux-based framework to control the application state.</p>
+						<p>At Novetta, I work on the new front-end of Ageon ISR. It is a real-time web application that interfaces with various sensors, devices, and communications in a geospatial context with live video streaming and various exploitation tools. The 3D globe is powered by Cesium (shown above), a third party map/globe visualization library. The front-end uses a properietary flux-based framework to control the application state.</p>
 					</div>
 					<div class="showcase-item">
 						<img src="./assets/flow-is-lava.png" alt="Flow Is Lava" width="250" height="250">
@@ -76,22 +76,26 @@
 		<div id="contactMeContainer">
 			<section id="contactMe">
 				<h1>CONTACT ME</h1>
-				<form id="emailForm" class="contact-form" action="http://localhost:3000/send" method="POST">
+				<form id="emailForm" class="contact-form">
 					<div class="contact-form__contact-info-row">
 						<div class="contact-form__contact-info-input">
-							<input name="name" type="text" placeholder="NAME">
+							<input id="nameInput" name="name" type="text" placeholder="NAME">
 						</div>
 						<div class="contact-form__contact-info-input">
-							<input name="email" type="email" placeholder="EMAIL">
+							<input id="emailInput" name="email" type="email" placeholder="EMAIL">
 						</div>
 					</div>
 					<div class="contact-form__content-row">
 						<div class="contact-form__contact-info-input">
-							<textarea name="message" placeholder="MESSAGE" rows="4"></textarea>
+							<textarea id="messageInput" name="message" placeholder="MESSAGE" rows="4"></textarea>
 						</div>
 					</div>
 					<div class="contact-form__submit-row">
-						<button type="submit" form="emailForm" >SUBMIT</button>
+						<button id="submitBtn" type="button">SUBMIT</button>
+						<div id="thankYou" class="hidden">
+							<p>Thanks for your interest!</p>
+							<p>I'll get back to you as soon as I can.</p>
+						</div>
 					</div>
 				</form>
 			</section>

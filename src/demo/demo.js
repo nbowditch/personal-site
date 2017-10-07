@@ -10,7 +10,7 @@ const Demo = {
             return;
         }
 
-        this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
+        this.gl.clearColor(0.54509803921, 0.0, 1.0, 1.0);
         this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
 
         var vertexShader = this.gl.createShader(this.gl.VERTEX_SHADER);
@@ -80,7 +80,9 @@ const Demo = {
         this.canvasSizeUniform = this.gl.getUniformLocation(program, 'canvasSize');
         this.canvasSize = new Float32Array(2);
 
-        this.program = program;  
+        this.program = program;
+
+        this.gl.clearColor(0.54509803921, 0.0, 1.0, 1.0); 
     },
     draw: (mousePos, canvas) => {
         // First transform mouse position into weird space of "good" fractals
@@ -100,7 +102,7 @@ const Demo = {
         this.canvasSize[0] = canvas.width;
         this.canvasSize[1] = canvas.height;
 
-        this.gl.clearColor(0.0, 0.0, 0.0, 1.0);
+        this.gl.clearColor(0.54509803921, 0.0, 1.0, 1.0);
         this.gl.clear(this.gl.COLOR_BUFFER_BIT | this.gl.DEPTH_BUFFER_BIT);
         this.gl.useProgram(this.program);
         this.gl.uniform2fv(this.mousePosUniform, this.mousePos);

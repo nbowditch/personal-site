@@ -4,11 +4,107 @@
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<title></title>
-	
-	<link rel="stylesheet" href="dist/styles.css">
 </head>
 <body>
-	<div id="app"></div>
-	<script src="dist/bundle.js"></script>
+	<div id="landing">
+		<canvas id="webgl-canvas" class="webgl-canvas"></canvas>
+	</div>
+	<div class="navContainer">
+		<nav id="nav">
+			<a href="#aboutMe">ABOUT ME</a>
+			<a href="#projects">PROJECTS</a>
+			<a href="#contactMe">CONTACT ME</a>
+		</nav>
+	</div>
+	<article>
+		<header>
+			<p>NATE</p>
+			<p>BOWDITCH</p>
+		</header>
+		<div id="aboutMeContainer">
+			<section id="aboutMe">
+				<h1>ABOUT ME</h1>
+				<p>You're probably mostly interested in my history of doing stuff with computers, so I'll start there.</p>
+				<p>I began studying computer science at Stonehill College in Easton, Massachusetts, and thought it was really cool. I graduated in 2013 and decided to delay real life by starting a Master's program at Brown Univeristy in Providence, Rhode Island. There I picked up a specialization in computer graphics, because making pretty pictures is neat. Since graduating in 2015, I've been working at Novetta in Boston, Massachusetts as a full-stack software engineer, though these days I am typically working on front-end code.</p>
+				<p>Outside of work, I really like using creation as a means of expression through whatever means or media I can get my hands on. I dabble in painting, drawing, wood carving, guitar, piano, or whatever seems interesting. Outdoor stuff is also pretty awesome, like hiking, or roasting dogs beneath the stars. Also, I'm a Hufflepuff.</p>
+			</section>
+		</div>
+		<div id="projectsContainer">
+			<section id="projects">
+				<h1>PROJECTS</h1>
+				<p>Throughout my years studying computer science and working as a developer I've worked on some interesting projects. Here are a few of my favorites:</p>
+				<div class="showcase">
+					<div class="showcase-item">
+						<img src="./assets/cesium.png" alt="Cesium" width="250" height="250">
+						<h2>AGEON ISR</h2>
+						<p>At Novetta, I work on the new front-end of Ageon ISR. It is a real-time web application that interfaces with various sensors, devices, and communications in a geospatial context with live video streaming and various exploitation tools. The 3D globe is powered by Cesium (shown above), a third party map/globe visualization library. The front-end uses a properietary flux-based framework to control the application state.</p>
+					</div>
+					<div class="showcase-item">
+						<img src="./assets/flow-is-lava.png" alt="Flow Is Lava" width="250" height="250">
+						<h2>FLOW IS LAVA</h2>
+						<p>This is an experiment simulating slow lava flow over randomly-generated terrain. The project started out by implementing the paper Fast Hydraulic Erosion Simulation and Visualization on GPU by Xing Mei, Philippe Decaudin, and Bau-Gang Hu. Heightmap values are stored as textures on the GPU so that inter-tile computations can be performed quickly in vertex shaders. The heat of lava is used to determine its viscocity, color, and emission.</p>
+					</div>
+					<div class="showcase-item">
+						<img src="./assets/raytracer.png" alt="Ray Tracer" width="250" height="250">
+						<h2>RAY TRACER</h2>
+						<p>My first major project in computer graphics was a ray tracer, developed in OpenGL. Rays are recursively traced to support reflections and shadows. All of the core concepts were programmed from scratch in C++, such as the lighting model and all of the intersections with basic primitive shapes. I also implemented various 2D filters and brushes that could be used to edit the resulting rendering or other images.</p>
+					</div>
+					<div class="showcase-item">
+						<img src="./assets/island-builder.png" alt="Island Builder" width="250" height="250">
+						<h2>ISLAND BUILDER</h2>
+						<p>I worked on this with a team of two others for a final project in my graphics class. It allows users to morph the terrain of a small island using various 3D brushes such as raise, lower, and noise. Objects (such as palm trees) can be placed on the surface of the island and transformed in several ways. We also created simple water shaders for rendering the surrounding ocean.</p>
+					</div>
+					<div class="showcase-item">
+						<img src="./assets/velonaut.png" alt="Velonaut" width="250" height="250">
+						<h2>VELONAUT</h2>
+						<p>This is a network racing game I created with a small team while at Brown. The goal was to expose the vital functionality of open-source C++ libraries to an upper Lua layer where the main game logic could be written in simple scripts. We successfully linked several libraries to our Lua layer: Ogre for graphics, Bullet for physics, RakNet for networking, and LibRocket for UI. The track for the tunnel is pseudo-randomly generated as a circuitous bezier spline.</p>
+					</div>
+				</div>
+				<p>Unfortunately for some of my projects, particularly older ones, I didn't think to grab screen shots, so they aren't as fun to look at. But here they are anyways.</p>
+				<div class="showcase">
+					<div class="showcase-item">
+						<h2>JTRACK</h2>
+						<p>For my Capstone project at Stonehill College, I worked with the other senior CS students to build a work-logging system called jTrack for Perkins School for the Blind. It is an MVC web app tailored for accesibility and allowed students to log timesheets to be approved by teachers and administrators. The application was developed in a semester and was presented to Perkins at the end of the term with positive feedback.</p>
+					</div>
+					<div class="showcase-item">
+						<h2>LECHUGA</h2>
+						<p>In winter 2014, I was on a small team for Brown's first Hackathon, Hack-At-Brown, where we developed a visually intuitive resource monitor extension for Chrome. Lechuga, as we called it, took first place in the category of "Best Data Visualization." It used the javascript data visualization library d3 to render plots of various system resources used by the browser.</p>
+					</div>
+				</div>				
+			</section>
+		</div>
+		<div id="contactMeContainer">
+			<section id="contactMe">
+				<h1>CONTACT ME</h1>
+				<form id="emailForm" class="contact-form">
+					<div class="contact-form__contact-info-row">
+						<div class="contact-form__contact-info-input">
+							<input id="nameInput" name="name" type="text" placeholder="NAME">
+						</div>
+						<div class="contact-form__contact-info-input">
+							<input id="emailInput" name="email" type="email" placeholder="EMAIL">
+						</div>
+					</div>
+					<div class="contact-form__content-row">
+						<div class="contact-form__contact-info-input">
+							<textarea id="messageInput" name="message" placeholder="MESSAGE" rows="4"></textarea>
+						</div>
+					</div>
+					<div class="contact-form__submit-row">
+						<button id="submitBtn" type="button">SUBMIT</button>
+						<div id="thankYou" class="hidden">
+							<p>Thanks for your interest!</p>
+							<p>I'll get back to you as soon as I can.</p>
+						</div>
+					</div>
+				</form>
+			</section>
+		</div>
+		<footer>
+			This is usually where social media stuff goes, but I don't do that. Sorry!
+			<br>
+			(It's not you, it's me)
+		</footer>
+	</article>
 </body>
 </html>

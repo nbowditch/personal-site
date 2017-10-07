@@ -1,6 +1,7 @@
 const express = require('express');
 const mailer = require('express-mailer');
 const bodyParser = require('body-parser');
+const sanitizer = require('sanitizer');
 const app = express();
 
 app.set('views', './dist');
@@ -8,7 +9,7 @@ app.set('views', './dist');
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
-app.use('/client', express.static(__dirname + '/dist/client'));
+app.use('/', express.static(__dirname + '/dist'));
 app.use('/assets', express.static(__dirname + '/assets'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -32,24 +33,28 @@ app.get('/', function (req, res) {
 });
 
 app.post('/send', function (req, res, next) {
-  var senderName = req.body.name;
-  var senderEmail = req.body.email;
-  var senderMessage = req.body.message;
+  var senderName = sanitizer.sanitize(req.body.name);
+  var senderEmail = sanitizer.sanitize(req.body.email);
+  var senderMessage = sanitizer.sanitize(req.body.message);
+
+  if (senderName === '' || senderEmail === '' || senderMessage === '') {
+    res.redirect('/#contactMe');
+    return;
+  }
 
   app.mailer.send('email', {
-    to: 'nhbowditch@gmail.com', // REQUIRED. This can be a comma delimited string just like a normal email to field.  
-    subject: 'Test Email', // REQUIRED. 
+    to: 'nhbowditch@gmail.com',
+    subject: 'Email from personal site',
     senderName,
     senderEmail,
     senderMessage
   }, function (err) {
     if (err) {
-      // handle error 
       console.log(err);
       res.send('There was an error sending the email');
       return;
     }
-    res.redirect('/');
+    res.redirect('/#contactMe');
   });
 });
 

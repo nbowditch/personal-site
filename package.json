@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rimraf dist && set NODE_ENV=prod&& webpack",
+    "build": "rimraf dist && set NODE_ENV=prod&& webpack && copyfiles email.html dist",
     "dev": "set NODE_ENV=dev&& node dev-server.js"
   },
   "author": "",
@@ -27,6 +27,7 @@
   "dependencies": {
     "body-parser": "^1.18.2",
     "ejs": "^2.5.7",
-    "express-mailer": "^0.3.1"
+    "express-mailer": "^0.3.1",
+    "sanitizer": "^0.1.3"
   }
 }
