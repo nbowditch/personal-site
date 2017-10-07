@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const sanitizer = require('sanitizer');
 const app = express();
 
-app.set('port', (process.env.port || 5000))
+app.set('port', (process.env.PORT || 5000))
 app.set('views', './dist');
 
 app.engine('html', require('ejs').renderFile);
